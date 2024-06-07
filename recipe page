@@ -1,0 +1,95 @@
+HTML...
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"/>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="recipe.css"/>
+    
+</head>
+<body>
+    <div class="pt-5 pb-5">
+        <div class="container">
+            <div class="row">
+                <h1 class="col-12 recipe-title" id="recipeTitle"></h1>
+                <div class="col-12 col-md-6 d-flex flex-column justify-content-center" id="imgContainer">
+                    <img id="img"/>
+                </div>
+                <div class="col-12 col-md-5 mt-3">
+                    <div class="ingredients-container">
+                        <h1 class="ingredients-title">Ingredients</h1>
+                        <ul id="ingredientListContainer"></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="recipe.js"></script>
+</body>
+</html>
+
+>CSS....
+
+
+@import url("https://fonts.googleapis.com/css2?family=Bree+Serif&family=Caveat:wght@400;700&family=Lobster&family=Monoton&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display+SC:ital,wght@0,400;0,700;1,700&family=Playfair+Display:ital,wght@0,400;0,700;1,700&family=Roboto:ital,wght@0,400;0,700;1,400;1,700&family=Source+Sans+Pro:ital,wght@0,400;0,700;1,700&family=Work+Sans:ital,wght@0,400;0,700;1,700&display=swap");
+
+.recipe-title{
+    text-align: center;
+    color: #de3a11;
+    font-family: "Lobster";
+    font-size: 60px;
+}
+.ingredients-container{
+    background-image: linear-gradient(#09203f, #537895);
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.ingredients-title{
+    text-align: center;
+    color: #ffffff;
+    font-family: Roboto;
+    font-size: 32px;
+    font-weight: 500;
+}
+
+.ingredient{
+    color: #ffffff;
+    font-family: Roboto;
+    font-size: 24px;
+}
+
+
+      .JS....
+
+      let recipeObj = {
+    title: "Tomato Pasta",
+    imgSrc: "https://assets.nhs.uk/prod/images/A_0518_tomato_pasta_J47AJ4.2e16d0ba.fill-920x613.jpg",
+    ingredients: ["Pasta", "Oil", "Onions", "Salt", "Tomato Pasta Sauce", "Cheese"]
+};
+
+let ingredientList = recipeObj.ingredients;
+
+let recipeTitleEl = document.getElementById("recipeTitle");
+let imgContainerEl = document.getElementById("imgContainer");
+let imgEl =  document.getElementById("img");
+let ingredientListContainerEl = document.getElementById("ingredientListContainer"); 
+
+
+
+recipeTitleEl.textContent = recipeObj.title;
+
+imgEl.setAttribute("src", recipeObj.imgSrc);
+imgEl.classList.add("w-100");
+imgContainerEl.appendChild(imgEl);
+
+for (let ingredient of ingredientList) {
+    let ingredientEl = document.createElement("li");
+    ingredientEl.textContent = ingredient;
+    ingredientEl.classList.add("ingredient");
+    ingredientListContainerEl.appendChild(ingredientEl);
+
+}
